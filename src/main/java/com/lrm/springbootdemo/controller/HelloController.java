@@ -1,4 +1,4 @@
-package com.lrm.springbootdemo.web;
+package com.lrm.springbootdemo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;

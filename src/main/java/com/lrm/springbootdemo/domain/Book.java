@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name = "book")
+@Entity
 public class Book {
 
 	@Id
@@ -19,8 +19,24 @@ public class Book {
 	private int status;
 
 	private String description;
+	
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", status=" + status + ", description="
+				+ description + "]";
+	}
 
-	public Book() {
+	// JPA
+	protected Book() {
+	}
+
+	public Book(long id, String name, String author, int status, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.author = author;
+		this.status = status;
+		this.description = description;
 	}
 
 	public long getId() {

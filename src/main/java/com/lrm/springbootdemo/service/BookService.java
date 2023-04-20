@@ -2,25 +2,18 @@ package com.lrm.springbootdemo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.lrm.springbootdemo.domain.Book;
-import com.lrm.springbootdemo.domain.BookRepository;
 
-@Service
-public class BookService {
+public interface BookService {
 
-	@Autowired
-	private BookRepository bookRepository;
+//	Book createBook(Book book);
+//
+//	Book getBookById(Long id);
 
-	/**
-	 * get all the books
-	 * 
-	 * @return
-	 */
-	public List<Book> findAll() {
-		return bookRepository.findAll();
-	}
+	List<Book> getAllBooks();
+
+//	Book updateBook(Book book);
+//
+//	void deleteBook(Long id);
 
 }

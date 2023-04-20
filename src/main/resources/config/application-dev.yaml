@@ -8,15 +8,18 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/book?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: a3412306
+    password: 2wsx#EDC
   jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
       # 若有table存在則不會刪除原本的table
-      ddl-auto: create
+      ddl-auto: update
       # display sql command
       show-sql: true
 server:
-  port: 8082
+  port: 8081
   servlet:
     context-path: /api
 logging:

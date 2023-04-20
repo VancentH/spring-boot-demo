@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //@Controller
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v2")
 public class HelloController {
 
 	@GetMapping("/say")

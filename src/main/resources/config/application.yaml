@@ -1,8 +1,7 @@
 spring:
-  profile:
-    # 目前啟用的 application.yaml
-    active: dev
-server:
-  port: 8081
-  servlet:
-    context-path: /api
+  profiles:
+    active: dev # 目前啟用的 application.yaml
+#server:
+#  port: 8081
+#  servlet:
+#    context-path: /api

@@ -6,14 +6,29 @@ import com.lrm.springbootdemo.domain.Book;
 
 public interface BookService {
 
-//	Book createBook(Book book);
-//
-//	Book getBookById(Long id);
+	/**
+	 * create a new book
+	 * 
+	 * @param book
+	 * @return
+	 */
+	Book createBook(Book book);
 
+	/**
+	 * get all books
+	 * 
+	 * @return
+	 */
 	List<Book> getAllBooks();
 
-//	Book updateBook(Book book);
-//
-//	void deleteBook(Long id);
+	/**
+	 * get a book by id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	Book getBookById(long id);
+
+	void deleteBook(long id);
 
 }

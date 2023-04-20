@@ -19,7 +19,7 @@ public class Book {
 	private int status;
 
 	private String description;
-	
+
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", status=" + status + ", description="
@@ -27,7 +27,7 @@ public class Book {
 	}
 
 	// JPA
-	protected Book() {
+	public Book() {
 	}
 
 	public Book(long id, String name, String author, int status, String description) {

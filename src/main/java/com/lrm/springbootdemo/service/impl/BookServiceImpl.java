@@ -1,5 +1,6 @@
 package com.lrm.springbootdemo.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +18,32 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book createBook(Book book) {
+		//		原先寫法
+		//      book.setId(0);
+		//		book.setName("xxx");
+		//		book.setAuthor("xxx");
+		//		book.setStatus(0);
+		//		book.setDescription("xxx");
 		return bookRepository.save(book);
 	}
 
+	// use lambda expression in order to return a list
+	// 將所有books加入至books這個list中
 	@Override
 	public List<Book> getAllBooks() {
-		return bookRepository.findAll();
+		List<Book> books = new ArrayList<>();
+		bookRepository.findAll().forEach(books::add);
+		return books;
 	}
 
 	@Override
 	public Book getBookById(long id) {
-		return bookRepository.findOne(id);
+		return bookRepository.findById(id);
 	}
 
 	@Override
 	public void deleteBook(long id) {
-		// TODO Auto-generated method stub
+		bookRepository.deleteById(id);
 	}
 
 }

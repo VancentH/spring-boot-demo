@@ -40,6 +40,17 @@ public class BookApp {
 	}
 
 	/**
+	 * 取得一本書
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/books/{id}")
+	public Book getOne(@PathVariable long id) {
+		return bookServiceImpl.getBookById(id);
+	}
+	
+	/**
 	 * 新增一本書
 	 * 
 	 * @param book
@@ -51,18 +62,7 @@ public class BookApp {
 	}
 
 	/**
-	 * 取得一本書
-	 * 
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("/books/{id}")
-	public Book getOne(@PathVariable long id) {
-		return bookServiceImpl.getBookById(id);
-	}
-
-	/**
-	 * update a book by id
+	 * 更新一本書
 	 * 
 	 * @param id
 	 * @param name

@@ -28,7 +28,11 @@ public interface BookService {
 	 * @return
 	 */
 	Book getBookById(long id);
-
+	
+	/**
+	 * delete a book
+	 * @param id
+	 */
 	void deleteBook(long id);
 
 }

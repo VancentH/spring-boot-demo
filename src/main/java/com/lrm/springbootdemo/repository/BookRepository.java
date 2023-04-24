@@ -1,20 +1,11 @@
 package com.lrm.springbootdemo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import com.lrm.springbootdemo.domain.Book;
 
 // 資料操作層
-public interface BookRepository extends JpaRepository<Book, Long> {
+public interface BookRepository extends CrudRepository<Book, Long> {
 
-	Book findOne(long id);
-
-//	Book createBook(Book book);
-//
-//	List<Book> findAll();
-//
-//	Book getBookById(Long id);
-//
-//	void deleteBook(Long id);
-
+	Book findById(long id);
 }

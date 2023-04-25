@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,7 +57,7 @@ public class BookApp {
 	 * @param book
 	 * @return
 	 */
-	@PostMapping("/book")
+	@PostMapping("/books")
 	public Book post(Book book) {
 		return bookServiceImpl.createBook(book);
 	}
@@ -83,5 +84,30 @@ public class BookApp {
 		// update and create both using repository.save()
 		return bookServiceImpl.createBook(book);
 	}
-
+	
+	
+	/**
+	 * 刪除一本書
+	 * 
+	 * @param id
+	 */
+	@DeleteMapping("/books/{id}")
+	public void delete(@PathVariable long id) {
+		bookServiceImpl.deleteBook(id);
+	}
+	
+	@PostMapping("/books/by/author")
+	public List<Book> findByAuthor(@RequestParam String author) {
+		return bookServiceImpl.findByAuthor(author);
+	}
+	
+	@PostMapping("/books/by/authorAndStatus")
+	public List<Book> findByAuthorAndStatus(@RequestParam String author, @RequestParam int status) {
+		return bookServiceImpl.findByAuthorAndStatus(author, status);
+	}
+	
+	@PostMapping("/books/by/description")
+	public List<Book> findByDescription(@RequestParam String description) {
+		return bookServiceImpl.findByDescriptionContaining(description);
+	}
 }

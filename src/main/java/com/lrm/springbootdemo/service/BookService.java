@@ -28,11 +28,31 @@ public interface BookService {
 	 * @return
 	 */
 	Book getBookById(long id);
-	
+
 	/**
 	 * delete a book
+	 * 
 	 * @param id
 	 */
 	void deleteBook(long id);
+
+	/**
+	 * get books by author
+	 * 
+	 * @param author
+	 * @return
+	 */
+	List<Book> findByAuthor(String author);
+
+	/**
+	 * get books by author and status
+	 * 
+	 * @param author
+	 * @param status
+	 * @return
+	 */
+	List<Book> findByAuthorAndStatus(String author, int status);
+
+	List<Book> findByDescriptionContaining(String description);
 
 }

@@ -18,12 +18,12 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book createBook(Book book) {
-		//		原先寫法
-		//      book.setId(0);
-		//		book.setName("xxx");
-		//		book.setAuthor("xxx");
-		//		book.setStatus(0);
-		//		book.setDescription("xxx");
+		// 原先寫法
+		// book.setId(0);
+		// book.setName("xxx");
+		// book.setAuthor("xxx");
+		// book.setStatus(0);
+		// book.setDescription("xxx");
 		return bookRepository.save(book);
 	}
 
@@ -44,6 +44,21 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void deleteBook(long id) {
 		bookRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Book> findByAuthor(String author) {
+		return bookRepository.findByAuthor(author);
+	}
+
+	@Override
+	public List<Book> findByAuthorAndStatus(String author, int status) {
+		return bookRepository.findByAuthorAndStatus(author, status);
+	}
+
+	@Override
+	public List<Book> findByDescriptionContaining(String description) {
+		return bookRepository.findByDescriptionContaining(description);
 	}
 
 }

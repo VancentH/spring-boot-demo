@@ -1,3 +1,4 @@
+#################### 查詢 ####################
 ### 取得所有書
 
 GET http://localhost:8081/api/v1/books HTTP/1.1
@@ -8,6 +9,38 @@ content-type: application/json
 GET http://localhost:8081/api/v1/books/52 HTTP/1.1
 content-type: application/json
 
+### 藉由作者找尋書
+POST http://localhost:8081/api/v1/books/by/author HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+author=JK羅琳
+
+### 藉由author、status找尋書
+POST http://localhost:8081/api/v1/books/by/authorAndStatus HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+author=JK羅琳
+&status=0
+
+### 藉由description找尋書(contains)
+POST http://localhost:8081/api/v1/books/by/description HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+description=法學院
+
+### 藉由length of Name找尋書
+POST http://localhost:8081/api/v1/books/by/length HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+length=12
+
+
+
+
+
+
+
+#################### 新增 ####################
 ### 新增一本書
 
 POST http://localhost:8081/api/v1/books HTTP/1.1
@@ -18,25 +51,59 @@ content-type: application/x-www-form-urlencoded
 &status=0
 &description=阿茲卡班的逃犯
 
+
+
+
+
+
+
+
+
+#################### 修改 ####################
 ### 修改一本書
 
 PUT http://localhost:8081/api/v1/books HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-id=2
-&name=2書
-&author=書 名
+id=3
+&name=哈利波特
+&author=JK羅琳
 &status=1
-&description= 敘述
+&description=一個魔法學院的故事
 
+### 更新[書本名稱]
+PUT  http://localhost:8081/api/v1/books/name HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+name=阿茲卡班的逃犯1
+&id=53
+
+### 更新[書本狀態]
+PUT  http://localhost:8081/api/v1/books/status HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+id=152
+&status=1
+
+
+
+
+##################### 刪除 ####################
 ### 刪除一本書
 
 DELETE http://localhost:8081/api/v1/books/102 HTTP/1.1
 content-type: application/json
 
-### 藉由作者找尋書
-POST http://localhost:8081/api/v1/books/by/author HTTP/1.1
+### 刪除書本(有回傳值)
+DELETE http://localhost:8081/api/v1/books/by/id HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-&author=JK羅琳
+id=53
 
+### 同時新增與刪除書本(有回傳值)
+POST http://localhost:8081/api/v1/books/transaction HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+id=252
+&status=20
+&uid=3

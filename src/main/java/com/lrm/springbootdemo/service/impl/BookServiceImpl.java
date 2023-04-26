@@ -10,6 +10,8 @@ import com.lrm.springbootdemo.domain.Book;
 import com.lrm.springbootdemo.repository.BookRepository;
 import com.lrm.springbootdemo.service.BookService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -59,6 +61,34 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<Book> findByDescriptionContaining(String description) {
 		return bookRepository.findByDescriptionContaining(description);
+	}
+
+	@Override
+	public List<Book> findByJPQL(int length) {
+		return bookRepository.findByJPQL(length);
+	}
+
+	@Override
+	public int updateByJPQL(String name, long id) {
+		return bookRepository.updateByJPQL(name, id);
+	}
+
+	@Override
+	public int deleteByJPQL(long id) {
+		return bookRepository.deleteByJPQL(id);
+	}
+
+	@Override
+	public int updateStatusByJPQL(int status, long id) {
+		return bookRepository.updateStatusByJPQL(status, id);
+	}
+
+	@Transactional
+	@Override
+	public int deleteAndUpdate(long id, int status, long uid) {
+		int dcount = bookRepository.deleteByJPQL(id);
+		int ucount = bookRepository.updateStatusByJPQL(status, uid);
+		return dcount + ucount;
 	}
 
 }

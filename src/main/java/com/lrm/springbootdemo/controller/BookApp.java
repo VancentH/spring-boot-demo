@@ -50,7 +50,7 @@ public class BookApp {
 	public Book getOne(@PathVariable long id) {
 		return bookServiceImpl.getBookById(id);
 	}
-	
+
 	/**
 	 * 新增一本書
 	 * 
@@ -84,8 +84,7 @@ public class BookApp {
 		// update and create both using repository.save()
 		return bookServiceImpl.createBook(book);
 	}
-	
-	
+
 	/**
 	 * 刪除一本書
 	 * 
@@ -95,19 +94,54 @@ public class BookApp {
 	public void delete(@PathVariable long id) {
 		bookServiceImpl.deleteBook(id);
 	}
-	
+
 	@PostMapping("/books/by/author")
 	public List<Book> findByAuthor(@RequestParam String author) {
 		return bookServiceImpl.findByAuthor(author);
 	}
-	
+
 	@PostMapping("/books/by/authorAndStatus")
 	public List<Book> findByAuthorAndStatus(@RequestParam String author, @RequestParam int status) {
 		return bookServiceImpl.findByAuthorAndStatus(author, status);
 	}
-	
+
 	@PostMapping("/books/by/description")
 	public List<Book> findByDescription(@RequestParam String description) {
 		return bookServiceImpl.findByDescriptionContaining(description);
+	}
+
+	/**
+	 * 使用書名的長度來尋找書本資料
+	 * 
+	 * @param length
+	 * @return
+	 */
+	@PostMapping("/books/by/length")
+	public List<Book> findByLengthOfName(@RequestParam int length) {
+		return bookServiceImpl.findByJPQL(length);
+	}
+
+	@PutMapping("/books/name")
+	public int updateName(@RequestParam String name, @RequestParam long id) {
+		return bookServiceImpl.updateByJPQL(name, id);
+	}
+	
+	@PutMapping("/books/status")
+	public int updateName(@RequestParam int status, @RequestParam long id) {
+		return bookServiceImpl.updateStatusByJPQL(status, id);
+	}
+	
+	@DeleteMapping("/books/by/id")
+	public int deleteById(@RequestParam long id) {
+		return bookServiceImpl.deleteByJPQL(id);
+	}
+	
+	
+	/**
+	 * 測試交易的原子性
+	 */
+	@PostMapping("/books/transaction")
+	public int deleteAndUpdate(@RequestParam long id, @RequestParam int status, @RequestParam long uid) {
+		return bookServiceImpl.deleteAndUpdate(id, status, uid);
 	}
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.lrm.springbootdemo.domain.Book;
 
+import jakarta.transaction.Transactional;
+
 public interface BookService {
 
 	/**
@@ -53,6 +55,28 @@ public interface BookService {
 	 */
 	List<Book> findByAuthorAndStatus(String author, int status);
 
+	/**
+	 * get books by description
+	 * 
+	 * @param description
+	 * @return
+	 */
 	List<Book> findByDescriptionContaining(String description);
 
+	/**
+	 * find books where book name length is large than given number
+	 * 
+	 * @param length
+	 * @return
+	 */
+	List<Book> findByJPQL(int length);
+
+	int updateByJPQL(String name, long id);
+
+	int updateStatusByJPQL(int status, long id);
+
+	int deleteByJPQL(long id);
+
+	// test for Transactional
+	int deleteAndUpdate(long id, int status, long uid);
 }
